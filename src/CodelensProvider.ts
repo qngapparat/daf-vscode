@@ -57,7 +57,7 @@ export class CodelensProvider implements vscode.CodeLensProvider {
             codeLens.command = {
                 title: "Codelens provided by sample extension",
                 tooltip: "Tooltip provided by sample extension",
-                command: "llend-vscode.codelensAction",
+                command: "llend-vscode.llendAction",
                 // pass range of codelens
                 arguments: [JSON.stringify(
                     {

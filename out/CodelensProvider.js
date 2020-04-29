@@ -44,9 +44,9 @@ class CodelensProvider {
                 workspacePath = vscode.workspace.workspaceFolders[0].uri.fsPath;
             }
             codeLens.command = {
-                title: "Codelens provided by sample extension",
+                title: "Convert to Lambda",
                 tooltip: "Tooltip provided by sample extension",
-                command: "llend-vscode.codelensAction",
+                command: "llend-vscode.llendAction",
                 // pass range of codelens
                 arguments: [JSON.stringify({
                         codeLens: codeLens,

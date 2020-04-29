@@ -20,7 +20,7 @@ function activate(context) {
     vscode_1.commands.registerCommand("llend-vscode.disablellend", () => {
         vscode_1.workspace.getConfiguration("llend-vscode").update("enablellend", false, true);
     });
-    vscode_1.commands.registerCommand("llend-vscode.codelensAction", (argsJSON) => {
+    vscode_1.commands.registerCommand("llend-vscode.llendAction", (argsJSON) => {
         let { codeLens, fpath, workspacePath } = JSON.parse(argsJSON);
         let linenum = codeLens.range[0].line; // NOTE we know we use singleline comments so linenum(s) is trivial
         /////////////////////////////////

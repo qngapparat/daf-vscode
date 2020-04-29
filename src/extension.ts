@@ -25,7 +25,7 @@ export function activate(context: ExtensionContext) {
         workspace.getConfiguration("llend-vscode").update("enablellend", false, true);
     });
 
-    commands.registerCommand("llend-vscode.codelensAction", (argsJSON) => {
+    commands.registerCommand("llend-vscode.llendAction", (argsJSON) => {
 
         let { codeLens, fpath, workspacePath } = JSON.parse(argsJSON)
         let linenum = codeLens.range[0].line // NOTE we know we use singleline comments so linenum(s) is trivial
