@@ -1,9 +1,9 @@
 {
-    "name": "codelens-sample",
-    "displayName": "CodeLens Sample",
-    "description": "Samples for VS Code's CodeLens API",
+    "name": "llend-vscode",
+    "displayName": "llend",
+    "description": "Use llend in VSCode",
     "version": "0.0.1",
-    "publisher": "ms-vscode",
+    "publisher": "qngapparat <jakob.wallnoefer@outlook.com>",
     "engines": {
         "vscode": "^1.26.0"
     },
@@ -18,18 +18,18 @@
         "commands": [
             {
                 "title": "Enable CodeLens",
-                "command": "codelens-sample.enableCodeLens",
-                "category": "CodeLens Sample"
+                "command": "llend-vscode.enablellend",
+                "category": "llend"
             },
             {
                 "title": "Disable Codelens",
-                "command": "codelens-sample.disableCodeLens",
-                "category": "CodeLens Sample"
+                "command": "llend-vscode.disablellend",
+                "category": "llend"
             }
         ],
         "configuration": {
             "properties": {
-                "codelens-sample.enableCodeLens": {
+                "llend-vscode.enablellend": {
                     "type": "boolean",
                     "default": true
                 }

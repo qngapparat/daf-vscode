@@ -14,13 +14,13 @@ var disposables = [];
 function activate(context) {
     let codelensProvider = new CodelensProvider_1.CodelensProvider();
     vscode_1.languages.registerCodeLensProvider("*", codelensProvider);
-    vscode_1.commands.registerCommand("codelens-sample.enableCodeLens", () => {
-        vscode_1.workspace.getConfiguration("codelens-sample").update("enableCodeLens", true, true);
+    vscode_1.commands.registerCommand("llend-vscode.enablellend", () => {
+        vscode_1.workspace.getConfiguration("llend-vscode").update("enablellend", true, true);
     });
-    vscode_1.commands.registerCommand("codelens-sample.disableCodeLens", () => {
-        vscode_1.workspace.getConfiguration("codelens-sample").update("enableCodeLens", false, true);
+    vscode_1.commands.registerCommand("llend-vscode.disablellend", () => {
+        vscode_1.workspace.getConfiguration("llend-vscode").update("enablellend", false, true);
     });
-    vscode_1.commands.registerCommand("codelens-sample.codelensAction", (argsJSON) => {
+    vscode_1.commands.registerCommand("llend-vscode.codelensAction", (argsJSON) => {
         let { codeLens, fpath, workspacePath } = JSON.parse(argsJSON);
         let linenum = codeLens.range[0].line; // NOTE we know we use singleline comments so linenum(s) is trivial
         /////////////////////////////////

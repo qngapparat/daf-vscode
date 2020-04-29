@@ -17,15 +17,15 @@ export function activate(context: ExtensionContext) {
 
     languages.registerCodeLensProvider("*", codelensProvider);
 
-    commands.registerCommand("codelens-sample.enableCodeLens", () => {
-        workspace.getConfiguration("codelens-sample").update("enableCodeLens", true, true);
+    commands.registerCommand("llend-vscode.enablellend", () => {
+        workspace.getConfiguration("llend-vscode").update("enablellend", true, true);
     });
 
-    commands.registerCommand("codelens-sample.disableCodeLens", () => {
-        workspace.getConfiguration("codelens-sample").update("enableCodeLens", false, true);
+    commands.registerCommand("llend-vscode.disablellend", () => {
+        workspace.getConfiguration("llend-vscode").update("enablellend", false, true);
     });
 
-    commands.registerCommand("codelens-sample.codelensAction", (argsJSON) => {
+    commands.registerCommand("llend-vscode.codelensAction", (argsJSON) => {
 
         let { codeLens, fpath, workspacePath } = JSON.parse(argsJSON)
         let linenum = codeLens.range[0].line // NOTE we know we use singleline comments so linenum(s) is trivial

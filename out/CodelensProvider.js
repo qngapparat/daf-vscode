@@ -21,7 +21,7 @@ class CodelensProvider {
         });
     }
     provideCodeLenses(document, token) {
-        if (vscode.workspace.getConfiguration("codelens-sample").get("enableCodeLens", true)) {
+        if (vscode.workspace.getConfiguration("llend-vscode").get("enablellend", true)) {
             this.codeLenses = [];
             const text = document.getText();
             const lines = text.split('\n');
@@ -38,7 +38,7 @@ class CodelensProvider {
         return [];
     }
     resolveCodeLens(codeLens, token) {
-        if (vscode.workspace.getConfiguration("codelens-sample").get("enableCodeLens", true)) {
+        if (vscode.workspace.getConfiguration("llend-vscode").get("enablellend", true)) {
             let workspacePath = null;
             if (vscode.workspace && vscode.workspace.workspaceFolders) {
                 workspacePath = vscode.workspace.workspaceFolders[0].uri.fsPath;
@@ -46,7 +46,7 @@ class CodelensProvider {
             codeLens.command = {
                 title: "Codelens provided by sample extension",
                 tooltip: "Tooltip provided by sample extension",
-                command: "codelens-sample.codelensAction",
+                command: "llend-vscode.codelensAction",
                 // pass range of codelens
                 arguments: [JSON.stringify({
                         codeLens: codeLens,

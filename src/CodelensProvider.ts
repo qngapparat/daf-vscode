@@ -25,7 +25,7 @@ export class CodelensProvider implements vscode.CodeLensProvider {
 
     public provideCodeLenses(document: vscode.TextDocument, token: vscode.CancellationToken): vscode.CodeLens[] | Thenable<vscode.CodeLens[]> {
 
-        if (vscode.workspace.getConfiguration("codelens-sample").get("enableCodeLens", true)) {
+        if (vscode.workspace.getConfiguration("llend-vscode").get("enablellend", true)) {
             this.codeLenses = [];
             const text = document.getText();
             const lines = text.split('\n');
@@ -47,7 +47,7 @@ export class CodelensProvider implements vscode.CodeLensProvider {
     }
 
     public resolveCodeLens(codeLens: vscode.CodeLens, token: vscode.CancellationToken) {
-        if (vscode.workspace.getConfiguration("codelens-sample").get("enableCodeLens", true)) {
+        if (vscode.workspace.getConfiguration("llend-vscode").get("enablellend", true)) {
 
             let workspacePath = null;
             if (vscode.workspace && vscode.workspace.workspaceFolders) {
@@ -57,7 +57,7 @@ export class CodelensProvider implements vscode.CodeLensProvider {
             codeLens.command = {
                 title: "Codelens provided by sample extension",
                 tooltip: "Tooltip provided by sample extension",
-                command: "codelens-sample.codelensAction",
+                command: "llend-vscode.codelensAction",
                 // pass range of codelens
                 arguments: [JSON.stringify(
                     {
