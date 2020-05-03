@@ -13,7 +13,7 @@
     "activationEvents": [
         "*"
     ],
-    "main": "./out/extension",
+    "main": "./src/extension",
     "contributes": {
         "commands": [
             {

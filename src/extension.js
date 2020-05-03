@@ -1,7 +1,7 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
-import { ExtensionContext, languages, commands, Disposable, workspace, window } from 'vscode';
-import { CodelensProvider } from './CodelensProvider';
+const { ExtensionContext, languages, commands, Disposable, workspace, window } = require('vscode');
+const { CodelensProvider } = require('./CodelensProvider');
 const childprocess = require('child_process')
 const fs = require('fs')
 const path = require('path')
@@ -10,9 +10,9 @@ const llend = require('llend')
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 
-var disposables: Disposable[] = [];
+var disposables = []
 
-export function activate(context: ExtensionContext) {
+function activate(context) {
     let codelensProvider = new CodelensProvider();
 
     languages.registerCodeLensProvider("*", codelensProvider);
@@ -82,9 +82,14 @@ export function activate(context: ExtensionContext) {
 }
 
 // this method is called when your extension is deactivated
-export function deactivate() {
+function deactivate() {
     if (disposables) {
         disposables.forEach(item => item.dispose());
     }
     disposables = [];
+}
+
+module.exports = {
+    activate,
+    deactivate
 }
