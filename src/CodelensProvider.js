@@ -38,12 +38,13 @@ class CodelensProvider {
                             new vscode.Position(idx, 1)
                         )
                     ));
-                    // this.codeLenses.push(new vscode.CodeLens(
-                    //     new vscode.Range(
-                    //         new vscode.Position(idx, 1),
-                    //         new vscode.Position(idx, 2)
-                    //     )
-                    // ));
+                    this.codeLenses.push(new vscode.CodeLens(
+                        new vscode.Range(
+                            new vscode.Position(idx, 1),
+                            new vscode.Position(idx, 2)
+                        )
+                    ));
+                 //   console.log(this.codeLenses[0].range[0].character)
                 }
             }
 
@@ -60,42 +61,44 @@ class CodelensProvider {
                 workspacePath = vscode.workspace.workspaceFolders[0].uri.fsPath
             }
 
-            // Decoding the crude encoding from above (lol)
-            // if (codeLens.range[0].character === 0) {
-            // Show 'Convert to Lambda label'
-            codeLens.command = {
-                title: "xConvert to Lambda",
-                tooltip: "Tooltip",
-                command: "llend-vscode.llendAction",
-                // pass range of codelens
-                arguments: [JSON.stringify(
-                    {
-                        codeLens: codeLens,
-                        fpath: vscode.window.activeTextEditor.document.fileName,
-                        workspacePath: workspacePath
-                        //outdir: outdir
-                    }
-                ), false]
-            };
-            // }
-            // else {
-            //     // Show other label
-            //     codeLens.command = {
-            //         title: "add call",
-            //         tooltip: "Tooltip",
-            //         command: "llend-vscode.llendAction",
-            //         // pass range of codelens
-            //         arguments: [JSON.stringify(
-            //             {
-            //                 codeLens: codeLens,
-            //                 fpath: vscode.window.activeTextEditor.document.fileName,
-            //                 workspacePath: workspacePath
-            //                 //outdir: outdir
-            //             }
-            //         ), false]
-            //     };
+            // decoding whether this is the first or second label of the line
+            // Using the JSON hack to get the raw data
+            if(JSON.parse(JSON.stringify(codeLens)).range[0].character === 0) {
 
-            // }
+                codeLens.command = {
+                    title: "Convert to Lambda",
+                    tooltip: "Tooltip",
+                    command: "llend-vscode.converttolambda",
+                    // pass range of codelens
+                    arguments: [JSON.stringify(
+                        {
+                            codeLens: codeLens,
+                            fpath: vscode.window.activeTextEditor.document.fileName,
+                            workspacePath: workspacePath
+                            //outdir: outdir
+                        }
+                    ), false]
+                };
+            } 
+
+            else {
+
+                codeLens.command = {
+                    title: "Add FaaS call",
+                    tooltip: "Tooltip",
+                    command: "llend-vscode.addfaascall",
+                    // pass range of codelens
+                    arguments: [JSON.stringify(
+                        {
+                            codeLens: codeLens,
+                            fpath: vscode.window.activeTextEditor.document.fileName,
+                            workspacePath: workspacePath
+                            //outdir: outdir
+                        }
+                    ), false]
+                };
+            }
+
             return codeLens;
         }
         return null;

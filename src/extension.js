@@ -25,35 +25,34 @@ function activate(context) {
         workspace.getConfiguration("llend-vscode").update("enablellend", false, true);
     });
 
-    commands.registerCommand("llend-vscode.llendAction", (argsJSON) => {
-
+    function sharedVerification(argsJSON) {
         let { codeLens, fpath, workspacePath } = JSON.parse(argsJSON)
-        let linenum = codeLens.range[0].line // NOTE we know we use singleline comments so linenum(s) is trivial
+        let linenum = codeLens.range[0].line
 
         /////////////////////////////////
         // workspacePath validation
 
         if (workspacePath == null || workspacePath.trim() === "") {
             window.showErrorMessage("In VSCode, open your project folder with your package.json for l to work")
-            return
+            throw new Error()
         }
 
         // See if package.json is there
         if (fs.existsSync(path.join(workspacePath, 'package.json')) === false) {
             window.showErrorMessage("No package.json found in folder open in VSCode")
-            return
+            throw new Error()
         }
 
         // See if it has the loutdir field
         let pkgjson = fs.readFileSync(path.join(workspacePath, 'package.json'), { encoding: 'utf8' })
         try { pkgjson = JSON.parse(pkgjson) } catch (e) {
             window.showErrorMessage("package.json is invalid JSON")
-            return
+            throw new Error()
         }
 
         if (pkgjson['loutdir'] == null) {
             window.showErrorMessage("Please specify the 'loutdir' field in package.json")
-            return
+            throw new Error()
         }
 
         ////////////////////////////////////
@@ -61,17 +60,43 @@ function activate(context) {
 
         if (isNaN(linenum)) {
             window.showWarningMessage("Couldn't extract line number from codeLens")
-            return
+            throw new Error()
         }
 
         if (fpath == null || fpath.trim() === "") {
             window.showErrorMessage("Couldn't extract file path from codeLens (Internal error)")
-            return
+            throw new Error()
         }
 
         if (/(.*?)\.js/.test(fpath) == false) {
             window.showErrorMessage("File must be a .js file")
+            throw new Error()
         }
+
+    }
+
+    commands.registerCommand("llend-vscode.addfaascall", (argsJSON) => {
+        
+        sharedVerification(argsJSON)
+
+        let { codeLens, fpath, workspacePath } = JSON.parse(argsJSON)
+        let linenum = codeLens.range[0].line
+
+        // TODO call llend.addcall
+        // run llend (Bulk of work)
+        return llend(fpath, linenum, workspacePath, true)
+        .then(() => window.showInformationMessage("Done success commeotou"))
+        .catch((e) => window.showErrorMessage("Something errored:" + e))
+
+    })
+
+
+    commands.registerCommand("llend-vscode.converttolambda", (argsJSON) => {
+        
+        sharedVerification(argsJSON)
+
+        let { codeLens, fpath, workspacePath } = JSON.parse(argsJSON)
+        let linenum = codeLens.range[0].line // NOTE we know we use singleline comments so linenum(s) is trivial
 
         // run llend (Bulk of work)
             return llend(fpath, linenum, workspacePath)
