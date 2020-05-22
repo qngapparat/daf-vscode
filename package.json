@@ -43,10 +43,10 @@
         "watch": "tsc -watch -p ./"
     },
     "dependencies": {
-        "llend": "0.0.13"
+        "llend": "^0.0.16"
     },
     "devDependencies": {
-        "@types/node": "^12.12.38",
+        "@types/node": "^12.12.39",
         "@types/vscode": "^1.45.0",
         "tslint": "5.10.0",
         "typescript": "3.8.3"
