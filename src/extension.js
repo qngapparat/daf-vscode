@@ -17,12 +17,12 @@ function activate(context) {
 
     languages.registerCodeLensProvider("*", codelensProvider);
 
-    commands.registerCommand("llend-vscode.enablellend", () => {
-        workspace.getConfiguration("llend-vscode").update("enablellend", true, true);
+    commands.registerCommand("daf-vscode.enabledaf", () => {
+        workspace.getConfiguration("daf-vscode").update("enabledaf", true, true);
     });
 
-    commands.registerCommand("llend-vscode.disablellend", () => {
-        workspace.getConfiguration("llend-vscode").update("enablellend", false, true);
+    commands.registerCommand("daf-vscode.disabledaf", () => {
+        workspace.getConfiguration("daf-vscode").update("enabledaf", false, true);
     });
 
     function sharedVerification(argsJSON) {
@@ -33,7 +33,7 @@ function activate(context) {
         // workspacePath validation
 
         if (workspacePath == null || workspacePath.trim() === "") {
-            window.showErrorMessage("In VSCode, open your project folder with your package.json for l to work")
+            window.showErrorMessage("In VSCode, open your project folder with your package.json for DAF to work")
             throw new Error()
         }
 
@@ -51,7 +51,7 @@ function activate(context) {
         }
 
         if (pkgjson['loutdir'] == null) {
-            window.showErrorMessage("Please specify the 'loutdir' field in package.json")
+            window.showErrorMessage("Please specify 'loutdir' (where DAF should put the generated lambdas) in package.json")
             throw new Error()
         }
 
@@ -75,7 +75,7 @@ function activate(context) {
 
     }
 
-    commands.registerCommand("llend-vscode.addfaascall", (argsJSON) => {
+    commands.registerCommand("daf-vscode.addfaascall", (argsJSON) => {
         
         sharedVerification(argsJSON)
 
@@ -85,13 +85,13 @@ function activate(context) {
         // TODO call llend.addcall
         // run llend (Bulk of work)
         return llend(fpath, linenum, workspacePath, true)
-        .then(() => window.showInformationMessage("Done success commeotou"))
-        .catch((e) => window.showErrorMessage("Something errored:" + e))
+        .then(() => window.showInformationMessage("Done: Add FaaS call"))
+        .catch((e) => window.showErrorMessage("Something errored: " + e))
 
     })
 
 
-    commands.registerCommand("llend-vscode.converttolambda", (argsJSON) => {
+    commands.registerCommand("daf-vscode.converttolambda", (argsJSON) => {
         
         sharedVerification(argsJSON)
 
@@ -100,8 +100,8 @@ function activate(context) {
 
         // run llend (Bulk of work)
             return llend(fpath, linenum, workspacePath)
-            .then(() => window.showInformationMessage("Done success"))
-            .catch((e) => window.showErrorMessage("Something errored:" + e))
+            .then(() => window.showInformationMessage("Done: Convert to Lambda"))
+            .catch((e) => window.showErrorMessage("Something errored: " + e))
      
     });
 }

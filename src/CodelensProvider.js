@@ -24,8 +24,8 @@ class CodelensProvider {
     }
 
     provideCodeLenses(document, token) {
-
-        if (vscode.workspace.getConfiguration("llend-vscode").get("enablellend", true)) {
+        
+        if (vscode.workspace.getConfiguration("daf-vscode").get("enabledaf", true)) {
             this.codeLenses = [];
             const text = document.getText();
             const lines = text.split('\n');
@@ -54,7 +54,7 @@ class CodelensProvider {
     }
 
     resolveCodeLens(codeLens, token) {
-        if (vscode.workspace.getConfiguration("llend-vscode").get("enablellend", true)) {
+        if (vscode.workspace.getConfiguration("daf-vscode").get("enabledaf", true)) {
 
             let workspacePath = null;
             if (vscode.workspace && vscode.workspace.workspaceFolders) {
@@ -68,7 +68,7 @@ class CodelensProvider {
                 codeLens.command = {
                     title: "Convert to Lambda",
                     tooltip: "Tooltip",
-                    command: "llend-vscode.converttolambda",
+                    command: "daf-vscode.converttolambda",
                     // pass range of codelens
                     arguments: [JSON.stringify(
                         {
@@ -86,7 +86,7 @@ class CodelensProvider {
                 codeLens.command = {
                     title: "Add FaaS call",
                     tooltip: "Tooltip",
-                    command: "llend-vscode.addfaascall",
+                    command: "daf-vscode.addfaascall",
                     // pass range of codelens
                     arguments: [JSON.stringify(
                         {
