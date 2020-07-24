@@ -5,7 +5,7 @@
   
   <br><br>
 
-<img width=600 src="https://github.com/qngapparat/daf-vscode/blob/master/usagecapture.gif" />	
+<img width=600 src="https://github.com/qngapparat/daf-vscode/raw/master/usagecapture.gif" />	
 
 </div>
 

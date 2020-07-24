@@ -2,10 +2,10 @@
     "name": "daf-vscode",
     "displayName": "DAF-VSCode",
     "description": "Use DAF (Dependency-Aware FaaSifier) in VSCode",
-    "version": "0.0.2",
+    "version": "0.0.4",
     "repository": "https://github.com/qngapparat/daf",
     "publisher": "qngapparat",
-    "icon": "./logo.png",
+    "icon": "logo.png",
     "engines": {
         "vscode": "^1.26.0"
     },
