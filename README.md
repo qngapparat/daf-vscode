@@ -1,4 +1,4 @@
-<h2 align="center">DAF-VSCode</div>
+<h2 align="center">DAF-VSCode</h2>
 
 <div align="center">
 Conveniently use [DAF (Dependency Aware FaaSifier)](https://github.com/qngapparat/daf) right from within VSCode.
