@@ -3,7 +3,7 @@
 <div align="center">
   Conveniently use <a href="https://github.com/qngapparat/daf">DAF</a> right from within VSCode.
   
-  <br>
+  <br><br>
 
 <img width=600 src="https://github.com/qngapparat/daf-vscode/blob/master/usagecapture.gif" />	
 
