@@ -8,14 +8,16 @@
 <img width=600 src="https://github.com/qngapparat/daf-vscode/blob/master/usagecapture.gif" />	
 
 </div>
-# Install
+
+
+## Install
 
 Search for 'DAF-VSCode' in the VSCode Marketplace.
 
-# Usage
+## Usage
 
 It works right out of the box. Code hints will appear above `// l` Annotations in `.js` files.
 
-# License 
+## License 
 
 Apache 2.0
