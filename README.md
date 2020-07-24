@@ -2,7 +2,7 @@
 
 Conveniently use [DAF (Dependency Aware FaaSifier)](https://github.com/qngapparat/daf) right from within VSCode.
 
-<img style="maxWidth: 400px; height: auto" src="https://github.com/qngapparat/daf-vscode/blob/master/usagecapture.gif" />	
+<img width=300 src="https://github.com/qngapparat/daf-vscode/blob/master/usagecapture.gif" />	
 
 
 # Install
