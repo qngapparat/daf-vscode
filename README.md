@@ -1,8 +1,8 @@
 # DAF-VSCode
 
-Conveniently use [DAF (Dependency Aware FaaSifier](https://github.com/qngapparat/daf) right from within VSCode.
+Conveniently use [DAF (Dependency Aware FaaSifier)](https://github.com/qngapparat/daf) right from within VSCode.
 
-<img src="https://github.com/qngapparat/daf-vscode/blob/master/usagecapture.gif" />	
+<img style="width: 50%; height: auto" src="https://github.com/qngapparat/daf-vscode/blob/master/usagecapture.gif" />	
 
 
 # Install
