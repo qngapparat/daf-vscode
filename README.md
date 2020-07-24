@@ -1,6 +1,5 @@
-# README of DAF-Vscode
+# DAF-VSCode
 
+Conveniently use DAF right from within VSCode.
 
-# License
-
-Apache 2.0
+<img src="https://github.com/qngapparat/daf-vscode/blob/master/usagecapture.gif" />	
