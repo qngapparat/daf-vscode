@@ -45,7 +45,7 @@
         "watch": "tsc -watch -p ./"
     },
     "dependencies": {
-        "llend": "^0.0.16"
+        "x2faas": "^0.1.5"
     },
     "devDependencies": {
         "tslint": "5.10.0",

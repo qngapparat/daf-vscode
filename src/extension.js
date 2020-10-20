@@ -6,7 +6,7 @@ const childprocess = require('child_process')
 const fs = require('fs')
 const path = require('path')
 
-const llend = require('llend')
+const x2faas = require('x2faas')
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 
@@ -43,17 +43,19 @@ function activate(context) {
             throw new Error()
         }
 
-        // See if it has the loutdir field
-        let pkgjson = fs.readFileSync(path.join(workspacePath, 'package.json'), { encoding: 'utf8' })
-        try { pkgjson = JSON.parse(pkgjson) } catch (e) {
-            window.showErrorMessage("package.json is invalid JSON")
-            throw new Error()
-        }
+        // OMIT loutdir, assume it's the current dir
 
-        if (pkgjson['loutdir'] == null) {
-            window.showErrorMessage("Please specify 'loutdir' (where DAF should put the generated lambdas) in package.json")
-            throw new Error()
-        }
+        // // See if it has the loutdir field
+        // let pkgjson = fs.readFileSync(path.join(workspacePath, 'package.json'), { encoding: 'utf8' })
+        // try { pkgjson = JSON.parse(pkgjson) } catch (e) {
+        //     window.showErrorMessage("package.json is invalid JSON")
+        //     throw new Error()
+        // }
+
+        // if (pkgjson['loutdir'] == null) {
+        //     window.showErrorMessage("Please specify 'loutdir' (where DAF should put the generated lambdas) in package.json")
+        //     throw new Error()
+        // }
 
         ////////////////////////////////////
         // linenum and fpath validation
@@ -82,9 +84,9 @@ function activate(context) {
         let { codeLens, fpath, workspacePath } = JSON.parse(argsJSON)
         let linenum = codeLens.range[0].line
 
-        // TODO call llend.addcall
-        // run llend (Bulk of work)
-        return llend(fpath, linenum, workspacePath, true)
+        // TODO call x2faas.addcall
+        // run x2faas (Bulk of work)
+        return x2faas(fpath, linenum, workspacePath, "amazon",true)
         .then(() => window.showInformationMessage("Done: Add FaaS call"))
         .catch((e) => window.showErrorMessage("Something errored: " + e))
 
@@ -98,8 +100,8 @@ function activate(context) {
         let { codeLens, fpath, workspacePath } = JSON.parse(argsJSON)
         let linenum = codeLens.range[0].line // NOTE we know we use singleline comments so linenum(s) is trivial
 
-        // run llend (Bulk of work)
-            return llend(fpath, linenum, workspacePath)
+        // run x2faas (Bulk of work)
+            return x2faas(fpath, linenum, workspacePath, "amazon")
             .then(() => window.showInformationMessage("Done: Convert to Lambda"))
             .catch((e) => window.showErrorMessage("Something errored: " + e))
      
